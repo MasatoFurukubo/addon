@@ -33,11 +33,11 @@ var dataIdC = configs.get( "conf_DataIdC" );
 var dataIdD = configs.get( "conf_DataIdD" );
 
 //// == ワークフローデータの参照 / Data Retrieving ==
-var loopCount = data.get( dataIdD ) - 0; // Java to JavaScript Number
-var lostTime  = data.get( dataIdC ) - 0; // Java to JavaScript Number
+var loopCount = engine.findDataByNumber( dataIdD ) - 0; // Java to JavaScript Number
+var lostTime  = engine.findDataByNumber( dataIdC ) - 0; // Java to JavaScript Number
 
-var startTime = data.get( dataIdA ); 
-var endTime   = data.get( dataIdB ); 
+var startTime = engine.findDataByNumber( dataIdA ); 
+var endTime   = engine.findDataByNumber( dataIdB ); 
 // com.questetra.bpms.util.AddableTimestamp
 
 //// == 演算 / Calculating ==
@@ -47,8 +47,8 @@ var intervalHour = Math.ceil( intervalMilliSec / 10 / 3600 ) / 100;
 lostTime = lostTime + intervalHour;
 
 //// == ワークフローデータへの代入 / Data Updating ==
-retVal.put( dataIdD, java.math.BigDecimal( loopCount ) );
-retVal.put( dataIdC, java.math.BigDecimal( lostTime ) );
+engine.setDataByNumber( dataIdD, java.math.BigDecimal( loopCount ) );
+engine.setDataByNumber( dataIdC, java.math.BigDecimal( lostTime ) );
 ]]></script>
 
 
